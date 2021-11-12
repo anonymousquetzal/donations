@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+
+<html xmlns:"http://www.w3.org/1999/xhtml" 
+    xmlns:"http://www.thymeleaf.org">
+    <head>
+        <title>Index</title>
+        <meta charset="UTF-8"/>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    </head>
+    <body>
+        <div>TODO write content</div>
+        
+        <p th:text="saludos"></p>
+        <p th:text="${mensaje}"></p>
+        <p th:text="${saludo}"></p>
+        
+        <br />
+        
+        Nombre: <span th:text="${person.name}">Name</span>
+        
+        <br />
+        
+        Date: <span th:text="${person.createdOn}">Name</span>
+        <br />
+        <br />
+        <br />
+        <div th:if="${team != null and !team.empty}">
+        <table border="1">
+            <tr>
+                <th>Name: </th>
+                <th>email: </th>
+                <th>Created On: </th>
+                
+            </tr>
+            <tr th:each="person : ${team}">
+                <td th:text="${person.name}">Name: </td>
+                <td th:text="${person.email}">Name: </td>
+                <td th:text="${person.createdOn}">Name: </td>
+            </tr>
+        </table>
+      </div>
+        <div th:if="${team == null or team.empty}">
+            List is empty
+        </div>
+    </body>
+</html>

@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+
+<html xmlns:th="http:www.thymeleaf.org"
+      xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+    <head>
+        <title>Index</title>
+        <meta charset="UTF-8"/>
+        
+        
+        
+    </head>
+    <body>
+        <header th:replace="layout/view-port :: header"/>
+        
+        <h1>Home</h1>
+        <a sec:authorize="hasRole('ROLE_ADMIN')" th:href="@{/update}">Add Person</a>
+        <br />
+        <div th:if="${team != null and !team.empty}">
+        <table border="1">
+            <tr>
+                <th>Name: </th>
+                <th>Last Name: </th>
+                <th>email: </th>
+                <th>Created On: </th>
+                <th>Modified On: </th>
+                <th sec:authorize="hasRole('ROLE_ADMIN')">Edit: </th>
+                <th sec:authorize="hasRole('ROLE_ADMIN')">Delete: </th>
+                
+            </tr>
+            <tr th:each="person : ${team}">
+                <td th:text="${person.name}">Name </td>
+                <td th:text="${person.surName}">Last Name </td>
+                <td th:text="${person.email}">Email </td>
+                <td th:text="${person.createdOn}">Date Created: </td>
+                <td th:text="${person.modifiedOn}">Date Modified: </td>
+                
+                <td sec:authorize="hasRole('ROLE_ADMIN')"> 
+                    <a th:href="@{/edit/}+ ${person.personId}" th:text="Edit"/>
+                </td>
+                
+                <td sec:authorize="hasRole('ROLE_ADMIN')"> 
+                    <a th:href="@{/delete(personId=${person.personId})}" th:text="Delete"/>
+                </td>
+                
+            </tr>
+        </table>
+      </div>
+        <div th:if="${team == null or team.empty}">
+            List is empty
+        </div>
+    </body>
+</html>

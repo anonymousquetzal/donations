@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<!--
+This page is used to edit user data
+maintenance is needed on this page the back end validations are not 
+performing 
+-->
+<html xmlns:th="http:www.thymeleaf.org"
+      xmlns="http://www.w3.org/1999/xhtml">
+    <head>
+        <title>Personal Info</title>
+        <meta charset="UTF-8"/>
+    </head>
+    
+    <body>
+        <header th:replace="layout/view-port :: header"/>
+        <a th:href="@{/}">Return</a>
+        <br />
+        <form th:action="@{/save}" method="post" th:object="${person}">
+            <input type="hidden" name="personId" th:field="*{personId}"/>
+            <br />
+            <label for="name">Name: </label>
+            <input type="text" name="name" th:field="*{name}" required="true"/>
+            <span th:if="${#fields.hasErrors('name')}" th:errors="*{name}">Error Nombre</span>
+            <br />
+            <label for="surName">Last Name: </label>
+            <input type="text" name="surName" th:field="*{surName}" required="true"/>
+            <span th:if="${#fields.hasErrors('surName')}" th:errors="*{surName}">Error in Last name</span>
+            <br />
+            <label for="userName">Username: </label>
+            <input type="text" name="userName" th:field="*{userName}" required="true"/>
+            <span th:if="${#fields.hasErrors('userName')}" th:errors="*{userName}">Error in Username</span>
+            <br />
+            <label for="password">Password: </label>
+            <input type="text" name="password" th:field="*{password}" required="true"/>
+            <span th:if="${#fields.hasErrors('password')}" th:errors="*{password}">Error with password</span>
+            <br />
+            <label for="email">Email: </label>
+            <input type="email" name="email" th:field="*{email}" required="true"/>
+            <span th:if="${#fields.hasErrors('email')}" th:errors="*{email}">Error Nombre</span>
+            <br />
+            <label for="idDocument">Document ID: </label>
+            <input type="text" name="idDocument" th:field="*{idDocument}" required="true"/>
+            <span th:if="${#fields.hasErrors('idDocument')}" th:errors="*{idDocument}">Error in documentID</span>
+            <br />
+            <label for="creditCard">Credit Card: </label>
+            <input type="number" name="creditCard" th:field="*{creditCard}" required="true"/>
+            <span th:if="${#fields.hasErrors('creditCard')}" th:errors="*{creditCard}">Error in name</span>
+            <br />
+            <input type="submit" name="save" value="Save" />
+        </form>
+    </body>
+</html>

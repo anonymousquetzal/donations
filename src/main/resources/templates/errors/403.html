@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<!--
+This page will be in charge of showing denied access message
+-->
+<html xmlns:th="http:www.thymeleaf.org"
+      xmlns="http://www.w3.org/1999/xhtml">
+
+    <head>
+        <title>Access denied</title>
+        <meta charset="UTF-8"/>       
+
+    </head>
+    <body>
+        <h1>Access Denied</h1>
+        <h2>
+            You do not have permission to access this page or to modify the data
+        </h2>
+        <h3>
+            <a th:href="@{/}">Return</a>
+        </h3>
+    </body>
+</html>
